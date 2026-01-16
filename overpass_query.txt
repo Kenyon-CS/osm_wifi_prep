@@ -1,0 +1,6 @@
+[out:csv(::type,::id,name,building,::lat,::lon; true; ",")][timeout:90];
+(
+  way["building"]({{bbox}});
+  relation["building"]({{bbox}});
+);
+out center;
