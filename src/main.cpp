@@ -169,9 +169,14 @@ int main(int argc, char** argv) {
 
             p.name = get("name");
 
+            // Overpass out:csv headers vary by selector:
+            // - out center; commonly yields @lat/@lon
+            // - other modes may yield ::lat/::lon or plain lat/lon
             std::string slat = get("::lat");
+            if (slat.empty()) slat = get("@lat");
             if (slat.empty()) slat = get("lat");
             std::string slon = get("::lon");
+            if (slon.empty()) slon = get("@lon");
             if (slon.empty()) slon = get("lon");
 
             if (!parseDouble(slat, p.lat) || !parseDouble(slon, p.lon)) {
